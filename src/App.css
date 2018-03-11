@@ -1,0 +1,14 @@
+.Wrapper {
+    display:inline-block;
+    margin: 5px;
+    padding: 5px;
+
+    background: #fff;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+
+.Wrapper:hover {
+    border: 1px solid #faa;
+    background: #fdd;
+}
