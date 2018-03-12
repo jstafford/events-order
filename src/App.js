@@ -359,6 +359,252 @@ class OverlappingSiblingsFirstOnTop extends Component<{}> {
   }
 }
 
+class OverlappingSiblingsZIndex extends Component<{}> {
+  cyan: ?HTMLDivElement = null
+  orange: ?HTMLDivElement = null
+
+  handleClick = (e:SyntheticMouseEvent<HTMLDivElement>): void => {
+    const id = e.currentTarget.id
+    console.log(`simple react: ${id}`)
+  }
+
+  handleCapture = (e: MouseEvent): void => {
+    const id = e.currentTarget instanceof HTMLDivElement ? e.currentTarget.id : ''
+    console.log(`simple capture: ${id}`)
+  }
+
+  handleBubble = (e: MouseEvent): void => {
+    const id = e.currentTarget instanceof HTMLDivElement ? e.currentTarget.id : ''
+    console.log(`simple bubble: ${id}`)
+  }
+
+  addListeners = (el: HTMLDivElement): void => {
+    el.addEventListener('click', this.handleCapture, true)
+    el.addEventListener('click', this.handleBubble, false)
+  }
+
+  componentDidMount() {
+    if (this.cyan) {
+      this.addListeners(this.cyan)
+    }
+    if (this.orange) {
+      this.addListeners(this.orange)
+    }
+  }
+
+  removeListeners = (el: HTMLDivElement): void => {
+    el.removeEventListener('click', this.handleCapture, true)
+    el.removeEventListener('click', this.handleBubble, false)
+  }
+
+  componentWillUnmount() {
+    if (this.cyan) {
+      this.removeListeners(this.cyan)
+    }
+    if (this.orange) {
+      this.removeListeners(this.orange)
+    }
+  }
+
+  render () {
+    return (
+      <div style={{
+        }}>
+        <div
+          onClick={this.handleClick}
+          ref={(element: ?HTMLDivElement): void => {this.cyan = element}}
+          id='cyan'
+          style={{
+            backgroundColor: 'cyan',
+            height: '50px',
+            width: '50px',
+            zIndex: 1000,
+          }}
+        >cyan</div>
+        <div
+          onClick={this.handleClick}
+          ref={(element: ?HTMLDivElement): void => {this.orange = element}}
+          id='orange'
+          style={{
+            backgroundColor: 'orange',
+            height: '50px',
+            width: '50px',
+            position: 'relative',
+            top: '-25px',
+            left: '25px',
+            zIndex: 1,
+          }}
+        >orange</div>
+      </div>
+    )
+  }
+}
+
+class OverlappingSiblingsNegativeZIndex extends Component<{}> {
+  cyan: ?HTMLDivElement = null
+  orange: ?HTMLDivElement = null
+
+  handleClick = (e:SyntheticMouseEvent<HTMLDivElement>): void => {
+    const id = e.currentTarget.id
+    console.log(`simple react: ${id}`)
+  }
+
+  handleCapture = (e: MouseEvent): void => {
+    const id = e.currentTarget instanceof HTMLDivElement ? e.currentTarget.id : ''
+    console.log(`simple capture: ${id}`)
+  }
+
+  handleBubble = (e: MouseEvent): void => {
+    const id = e.currentTarget instanceof HTMLDivElement ? e.currentTarget.id : ''
+    console.log(`simple bubble: ${id}`)
+  }
+
+  addListeners = (el: HTMLDivElement): void => {
+    el.addEventListener('click', this.handleCapture, true)
+    el.addEventListener('click', this.handleBubble, false)
+  }
+
+  componentDidMount() {
+    if (this.cyan) {
+      this.addListeners(this.cyan)
+    }
+    if (this.orange) {
+      this.addListeners(this.orange)
+    }
+  }
+
+  removeListeners = (el: HTMLDivElement): void => {
+    el.removeEventListener('click', this.handleCapture, true)
+    el.removeEventListener('click', this.handleBubble, false)
+  }
+
+  componentWillUnmount() {
+    if (this.cyan) {
+      this.removeListeners(this.cyan)
+    }
+    if (this.orange) {
+      this.removeListeners(this.orange)
+    }
+  }
+
+  render () {
+    return (
+      <div style={{
+        }}>
+        <div
+          onClick={this.handleClick}
+          ref={(element: ?HTMLDivElement): void => {this.cyan = element}}
+          id='cyan'
+          style={{
+            backgroundColor: 'cyan',
+            height: '50px',
+            width: '50px',
+            zIndex: 1000,
+          }}
+        >cyan</div>
+        <div
+          onClick={this.handleClick}
+          ref={(element: ?HTMLDivElement): void => {this.orange = element}}
+          id='orange'
+          style={{
+            backgroundColor: 'orange',
+            height: '50px',
+            width: '50px',
+            position: 'relative',
+            top: '-25px',
+            left: '25px',
+            zIndex: -1000,
+          }}
+        >orange</div>
+      </div>
+    )
+  }
+}
+
+class OverlappingSiblingsZIndexRelative extends Component<{}> {
+  cyan: ?HTMLDivElement = null
+  orange: ?HTMLDivElement = null
+
+  handleClick = (e:SyntheticMouseEvent<HTMLDivElement>): void => {
+    const id = e.currentTarget.id
+    console.log(`simple react: ${id}`)
+  }
+
+  handleCapture = (e: MouseEvent): void => {
+    const id = e.currentTarget instanceof HTMLDivElement ? e.currentTarget.id : ''
+    console.log(`simple capture: ${id}`)
+  }
+
+  handleBubble = (e: MouseEvent): void => {
+    const id = e.currentTarget instanceof HTMLDivElement ? e.currentTarget.id : ''
+    console.log(`simple bubble: ${id}`)
+  }
+
+  addListeners = (el: HTMLDivElement): void => {
+    el.addEventListener('click', this.handleCapture, true)
+    el.addEventListener('click', this.handleBubble, false)
+  }
+
+  componentDidMount() {
+    if (this.cyan) {
+      this.addListeners(this.cyan)
+    }
+    if (this.orange) {
+      this.addListeners(this.orange)
+    }
+  }
+
+  removeListeners = (el: HTMLDivElement): void => {
+    el.removeEventListener('click', this.handleCapture, true)
+    el.removeEventListener('click', this.handleBubble, false)
+  }
+
+  componentWillUnmount() {
+    if (this.cyan) {
+      this.removeListeners(this.cyan)
+    }
+    if (this.orange) {
+      this.removeListeners(this.orange)
+    }
+  }
+
+  render () {
+    return (
+      <div style={{
+        }}>
+        <div
+          onClick={this.handleClick}
+          ref={(element: ?HTMLDivElement): void => {this.cyan = element}}
+          id='cyan'
+          style={{
+            backgroundColor: 'cyan',
+            height: '50px',
+            left: 0,
+            position: 'relative',
+            top: 0,
+            width: '50px',
+            zIndex: 1000,
+          }}
+        >cyan</div>
+        <div
+          onClick={this.handleClick}
+          ref={(element: ?HTMLDivElement): void => {this.orange = element}}
+          id='orange'
+          style={{
+            backgroundColor: 'orange',
+            height: '50px',
+            width: '50px',
+            position: 'relative',
+            top: '-25px',
+            left: '25px',
+            zIndex: 1,
+          }}
+        >orange</div>
+      </div>
+    )
+  }
+}
+
 
 class App extends Component<{}> {
   render() {
@@ -428,6 +674,18 @@ class App extends Component<{}> {
           <div>
             <p>overlapping siblings first on top</p>
             <OverlappingSiblingsFirstOnTop />
+          </div>
+          <div>
+            <p>overlapping siblings z index</p>
+            <OverlappingSiblingsZIndex />
+          </div>
+          <div>
+            <p>overlapping siblings negative z index</p>
+            <OverlappingSiblingsNegativeZIndex />
+          </div>
+          <div>
+            <p>overlapping siblings z index, both relative position</p>
+            <OverlappingSiblingsZIndexRelative />
           </div>
         </div>
       </div>
